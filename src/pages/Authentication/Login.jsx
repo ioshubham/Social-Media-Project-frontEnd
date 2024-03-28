@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react';
 import * as Yup from "yup";
@@ -44,6 +44,7 @@ const Login = () => {
               <ErrorMessage name="password" component={"div"} className='text-red-500'/>
             </div>
           </div>
+          <Button sx={{padding: ".8rem 0rem"}} fullWidth type="submit" variant="contained" color='primary'>Login</Button>
         </Form>
       </Formik>
     </div>

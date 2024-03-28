@@ -1,6 +1,7 @@
 import { Card, Grid } from '@mui/material'
 import React from 'react'
 import Login from './Login'
+import Register from './Register'
 
 
 const Authentication = () => {
@@ -29,7 +30,8 @@ const Authentication = () => {
                 <p className='text-center text-sm w-[70%]'>Connecting lives, Sharing Stories: Your World Your Way</p>
                 </div>
 
-                <Login></Login>
+                {/*<Login></Login>*/}
+                <Register></Register>
             </Card>
           </div>
 
