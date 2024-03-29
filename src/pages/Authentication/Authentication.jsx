@@ -30,8 +30,8 @@ const Authentication = () => {
                 <p className='text-center text-sm w-[70%]'>Connecting lives, Sharing Stories: Your World Your Way</p>
                 </div>
 
-                {/*<Login></Login>*/}
-                <Register></Register>
+                <Login></Login>
+                {/*<Register></Register>*/}
             </Card>
           </div>
 
