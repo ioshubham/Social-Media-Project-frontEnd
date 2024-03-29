@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import * as Yup from "yup";
 import { registerUserAction } from '../../Redux/Auth/auth.action';
+import { Navigate } from 'react-router-dom';
 
 const initialValues = {firstName:"",lastName:"", email: "", password: "",gender:"" };
 
@@ -85,6 +86,10 @@ const Register = () => {
           <Button sx={{padding: ".8rem 0rem"}} fullWidth type="submit" variant="contained" color='primary'>Register</Button>
         </Form>
       </Formik>
+      <div className='flex gap-2 item-center justfy-center'>
+        <p>If you don't have account ?</p>
+        <Button onClick={()=>Navigate('/register')}>Register</Button>
+      </div>
     </div>
   );
 };

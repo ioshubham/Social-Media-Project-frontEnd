@@ -4,6 +4,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import * as Yup from "yup";
 import { loginUserAction } from '../../Redux/Auth/auth.action';
+import { useNavigate } from 'react-router-dom';
 
 const initialValues = { email: "", password: "" };
 
@@ -14,7 +15,7 @@ const validationSchema = Yup.object({
 
 const Login = () => {
   // const [formValues,setFormValue] = useState();
-
+  const navigate = useNavigate(); 
   const dispatch=useDispatch();
 
   const handleSubmit = (values) => {
@@ -53,6 +54,10 @@ const Login = () => {
           <Button sx={{padding: ".8rem 0rem"}} fullWidth type="submit" variant="contained" color='primary'>Login</Button>
         </Form>
       </Formik>
+      <div className='flex gap-2 item-center justfy-center'>
+        <p>If you don't have account ?</p>
+        <Button onClick={()=>navigate('/register')}>Register</Button>
+      </div>
     </div>
   );
 };
