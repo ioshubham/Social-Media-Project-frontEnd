@@ -13,12 +13,12 @@ const HomePage = () => {
   return (
     <div className='px-20'>
         <Grid container spacing={0}>
-          <Grid item xs={0} lg={4}>
+          <Grid item xs={0} lg={3}>
                 <div className='sticky top-0'>
                   <SideBar/>
                 </div>
           </Grid>
-          <Grid lg={4} item className='px-5 flex justify-center' xs={12}>
+          <Grid lg={7} item className='px-5 flex justify-center' xs={12}>
               <Routes>
                 <Route  path="/" element={<MiddlePart/>}/>
                 <Route  path="/reels" element={<Reels/>}/>
@@ -26,7 +26,7 @@ const HomePage = () => {
                 <Route  path="/profile/:id" element={<Profile/>}/>
               </Routes>
           </Grid>
-          <Grid item lg={4} className='relative'>
+          <Grid item lg={2} className='relative'>
               <div className='sticky top-0 w-full'>
                 <HomeRight/>
               </div>
