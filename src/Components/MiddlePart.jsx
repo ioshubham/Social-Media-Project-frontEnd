@@ -5,7 +5,9 @@ import StoryCircle from './StoryCircle';
 import ImageIcon from '@mui/icons-material/Image';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import ArticleIcon from '@mui/icons-material/Article';
+import PostCard from './PostCard';
 const story=[1,1,1,1,1]
+const post=[1,1,1,1,1]
 
 const handOpenCreatePostModel=()=>{
   console.log("open post model ........")
@@ -48,14 +50,14 @@ const MiddlePart = () => {
           <div className='flex items-center'>
             <IconButton color="primary" onClick={handOpenCreatePostModel}>
               <ArticleIcon/>
-
             </IconButton>
-
-            <span>Article</span>
+            <span>Write Article</span>
           </div>
         </div>
       </Card>
-
+      <div className='mt-5 spacy-y-5'>
+        {post.map((item)=><PostCard/>)}
+      </div>
     </div>
   )
 }
