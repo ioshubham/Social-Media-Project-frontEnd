@@ -3,6 +3,8 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import PostCard from './PostCard'
 import UserReelCard from './UserReelCard'
+import { useSelector } from 'react-redux'
+
 
 const tabs=[
   {values:"post",name:"Post"},
@@ -21,7 +23,7 @@ const Profile = () => {
 const handleChange = (event, newValue) => {
   setValue(newValue);
 };
-    const {id} =useParams()
+const {auth}= useSelector(store=>store);
   return (
     <Card className='py-10 w-[70%]'>
 
@@ -46,8 +48,8 @@ const handleChange = (event, newValue) => {
 
       <div className='p-5'>
           <div>
-            <h1 className='py-1 font-bold text-xl'>Dummy User Name</h1>
-            <p>@Dummyusername</p>
+            <h1 className='py-1 font-bold text-xl'>{auth.user.firstName+" "+auth.user.lastName}</h1>
+            <p>@{auth.user.firstName.toLowerCase()+"_"+auth.user.lastName.toLowerCase()}</p>
           </div>
           <div className='flex gap-5 item-center py-3'>
 
