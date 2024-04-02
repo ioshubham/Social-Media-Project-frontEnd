@@ -1,6 +1,6 @@
 import { Avatar, Box, Button, Card, Tab, Tabs } from '@mui/material'
 import React from 'react'
-import { useParams } from 'react-router-dom'
+//import { useParams } from 'react-router-dom'
 import PostCard from './PostCard'
 import UserReelCard from './UserReelCard'
 import { useSelector } from 'react-redux'
