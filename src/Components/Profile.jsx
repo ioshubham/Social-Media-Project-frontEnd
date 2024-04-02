@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import PostCard from './PostCard'
 import UserReelCard from './UserReelCard'
 import { useSelector } from 'react-redux'
+import ProfileModal from './ProfileModel'
 
 
 const tabs=[
@@ -18,7 +19,13 @@ const reels =[1,1,1,1]
 const savedPost = [1,1,1,1]
 
 const Profile = () => {
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpenModels = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const [value, setValue] = React.useState('post');
+ 
 
 const handleChange = (event, newValue) => {
   setValue(newValue);
@@ -41,7 +48,7 @@ const {auth}= useSelector(store=>store);
         src="https://cdn.pixabay.com/photo/2021/06/25/13/22/girl-6363743_1280.jpg" />
 
         {true?
-        <Button sx={{borderRadius:"20px"}} variant="outlined">Edit Profile</Button>:
+        <Button sx={{borderRadius:"20px"}} variant="outlined" onClick={handleOpenModels}>Edit Profile</Button>:
         <Button sx={{borderRadius:"20px"}} variant="outlined">Follow</Button>}
 
       </div>
@@ -92,10 +99,11 @@ const {auth}= useSelector(store=>store);
 
       </div>
       </section>
+      </div>
 
-    </div>
-    
-    
+      <section>
+      <ProfileModal open={open} handleClose={handleClose} />
+      </section>
     </Card>
   )
 }
