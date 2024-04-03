@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import React, { useState } from 'react'
 import ImageIcon from '@mui/icons-material/Image';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
+import { uploadToCloudinary } from '../utils/UploadToCloudniry';
 
 const style = {
     position: 'absolute',
@@ -25,11 +26,20 @@ const CreatePostModel = ({ handleClose, open }) => {
     const [selectedVideo, setSelectedVideo] = useState();
     const [isLoading,setIsLoading] = useState(false);
 
-    const handleSelectVideo = () => {
+    const handleSelectVideo = async(event) => {
+        setIsLoading(true);
+        const videoUrl = await uploadToCloudinary(event.target.files[0],"video")
+        setSelectedVideo(videoUrl);
+        setIsLoading(false);
+        formik.setFieldValue("video",videoUrl)
 
     }
-    const handleSelectImage = () => {
-
+    const handleSelectImage = async(event) => {
+        setIsLoading(true);
+        const imageUrl = await uploadToCloudinary(event.target.files[0],"image")
+        setSelectedImage(imageUrl);
+        setIsLoading(false);
+        formik.setFieldValue("image",imageUrl)
     }
     const formik = useFormik({
         initialValues:{
@@ -77,7 +87,7 @@ const CreatePostModel = ({ handleClose, open }) => {
                                     style={{ display: "none" }}
                                     id="image-input" />
                                 <label htmlFor="image-input">
-                                    <IconButton color='primary'>
+                                    <IconButton color='primary' component="span">
                                         <ImageIcon />
                                     </IconButton>
                                 </label>
