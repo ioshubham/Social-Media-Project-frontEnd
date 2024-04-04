@@ -19,7 +19,7 @@ export const postReducer=(state=initialState,action)=>{
             return {...state, error:null, loading: false}
             
         case CREATE_POST_SUCCESS:
-            return {...state,post:action.payload,posts:[action.payload,...state.post],loading:false,error:null}
+            return {...state,post:action.payload,posts:[action.payload,...state.posts],loading:false,error:null}
 
         case GET_ALL_POST_SUCCESS:
             return {...state,posts: action.payload,loading:false,error:null,comments:action.payload.comments}

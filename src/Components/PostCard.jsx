@@ -9,13 +9,13 @@ import ChatIcon from '@mui/icons-material/Chat';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { useDispatch, useSelector } from 'react-redux';
-import { createCOmmentAction } from '../Redux/Post/post.action';
+import { createCOmmentAction, likePostAction } from '../Redux/Post/post.action';
+import { isLikedByreqUser } from '../utils/Islikedbyrequser';
 
 const PostCard = ({ item }) => {
   const [showComments,setShowComment] = useState(false);
   const dispatch = useDispatch();
-  const {post} = useSelector(store=>store);
-
+  const {post,auth} = useSelector(store=>store);
   const handleShowComment=()=>{
     setShowComment(!showComments);
   }
@@ -28,6 +28,10 @@ const PostCard = ({ item }) => {
     }
     dispatch(createCOmmentAction(reqData))
   }
+    const handleLikePost=()=>{
+      dispatch(likePostAction(item.postId))
+    }
+  
   return (
     <Card >
       <CardHeader
@@ -41,15 +45,17 @@ const PostCard = ({ item }) => {
             <MoreVertIcon />
           </IconButton>
         }
+        
         title={item.user.firstName + " " + item.user.lastName}
         subheader={"@" + item.user.firstName.toLowerCase() + "_" + item.user.lastName.toLowerCase()}
       />
-      <CardMedia
-        component="img"
-        height="194"
-        image={item.image}
-        alt="Two child"
+  <CardMedia
+    component="img"
+    height="194"
+    image={item.image}
+    alt="Two child"
       />
+      {/*<img src={item.image} className='w-full max-h-[30rem] object-cover' alt="" />*/}
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {item.caption}
@@ -57,8 +63,8 @@ const PostCard = ({ item }) => {
       </CardContent>
       <CardActions className='flex justify-between' disableSpacing>
         <div>
-          <IconButton>
-            {true ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          <IconButton onClick={handleLikePost}>
+            {isLikedByreqUser(auth.user.id ,item) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </IconButton>
           <IconButton>
             {<ShareIcon />}
