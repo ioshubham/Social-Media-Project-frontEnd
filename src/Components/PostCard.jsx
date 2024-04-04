@@ -8,12 +8,25 @@ import ShareIcon from '@mui/icons-material/Share';
 import ChatIcon from '@mui/icons-material/Chat';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import { useDispatch, useSelector } from 'react-redux';
+import { createCOmmentAction } from '../Redux/Post/post.action';
 
 const PostCard = ({ item }) => {
   const [showComments,setShowComment] = useState(false);
+  const dispatch = useDispatch();
+  const {post} = useSelector(store=>store);
 
   const handleShowComment=()=>{
     setShowComment(!showComments);
+  }
+  const handleCreateComment=(content)=>{
+    const reqData={
+      postId:item.postId,
+      data: {
+        content
+      }
+    }
+    dispatch(createCOmmentAction(reqData))
   }
   return (
     <Card >
@@ -66,6 +79,7 @@ const PostCard = ({ item }) => {
           <Avatar sx={{}} />
           <input onKeyPress={(e)=>{
             if(e.key==="Enter"){
+              handleCreateComment(e.target.value)
               console.log("enter is pressed-------------",e.target.value)
             }
           }}
@@ -73,15 +87,13 @@ const PostCard = ({ item }) => {
         </div>
         <Divider/>
         <div className='mx-3 space-y-2 my-5 text-xs'>
-          <div className='flex justify-between items-center'>
-            <div className='flex items-center space-x-5'>
+            {item.comments?.map((comment)=><div className='flex items-center space-x-5'>
               <Avatar sx={{height:"2rem",width:"2rem",fontSize:".8rem"}}>  
-                dummyName 
+                {comment.user.firstName[0]} 
               </Avatar>
-              <p>dummyComment</p>
-            </div>
+              <p>{comment.content}</p>
+            </div>) }
 
-          </div>
 
         </div>
       </section>}

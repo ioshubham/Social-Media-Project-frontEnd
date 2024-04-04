@@ -5,7 +5,7 @@ import ImageIcon from '@mui/icons-material/Image';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import { uploadToCloudinary } from '../utils/UploadToCloudniry';
 import { useDispatch } from 'react-redux';
-import { createPostAction } from '../Redux/Post/post.action';
+import { createCOmmentAction, createPostAction } from '../Redux/Post/post.action';
 
 const style = {
     position: 'absolute',
@@ -54,7 +54,9 @@ const CreatePostModel = ({ handleClose, open }) => {
             console.log("formik values from createpostmodel",values);
             dispatch(createPostAction(values))
         }
+
     });
+    
     return (
         <Modal
             open={open}

@@ -24,12 +24,13 @@ const MiddlePart = () => {
   const [openCreatePostModel,setOpenCreatePostmodel] = useState(false);
   const handleCloseCreatePostModel=()=>setOpenCreatePostmodel(false);
 
-  useEffect(()=>{
-    dispatch(getAllPostAction())
-  },[])
+
   const {post} =useSelector(store=>store)
 
   console.log("post store",post)
+  useEffect(()=>{
+    dispatch(getAllPostAction())
+  },[post.newComment])
   return (
     <div className='px-20'>
       <section className='flex items-center p-5 rounded-b-md'>
